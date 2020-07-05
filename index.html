@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>360&deg; Image Gallery T6</title>
+    <title>360&deg; Image Gallery T7</title>
     <meta name="description" content="360&deg; Image Gallery - A-Frame">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
@@ -15,10 +15,11 @@
       <a-entity class="link"
         geometry="primitive: circle; radius: 0.6;"
         material="shader: flat; src: ${thumb}"
-        link="title: ${title}; href: ${href}"
+        link="title: 'Italy'; href: ${href}"
         event-set__mouseenter="scale: 1.2 1.2 1"
         event-set__mouseleave="scale: 1 1 1"
-        event-set__click="sound.src: #click-sound"></a-entity>
+        event-set__click="sound.src: #click-sound"
+        sound="on: click; src: #click-sound"></a-entity>
     </script>
     <!-- event-set__click="_target: #image-360; _delay: 300; material.src: ${src}" -->
     <!-- proxy-event="event: click; to: #image-360; as: fade" -->
@@ -51,7 +52,7 @@
       <a-entity id="links"  position="0 -1 0">
         <!-- componente che è possibile utilizzare layout="type: box; columns: 3; margin: 1.5;" -->
         <!-- <a-link class="link" href="scenes/italy.html" title="Italy 7" image="Street View 3602 1.jpg" on="click" peekMode="true"></a-link> -->
-        <a-entity template="src: #link" data-href="scenes/italy.html" data-title="Italy" data-src="#square" data-thumb="#square-thumb" position="0 0 -4"></a-entity>
+        <a-entity template="src: #link" data-href="scenes/italy.html" data-src="#square" data-thumb="#square-thumb" position="0 0 -4"></a-entity>
         <a-entity template="src: #link" data-href="scenes/italy.html" data-title="Greece" data-src="#cubes" data-title="Greece" data-thumb="#cubes-thumb" position="2 1 -8"></a-entity>
         <a-entity template="src: #link" data-src="#city" data-thumb="#city-thumb" position="4 1 -6"></a-entity>
         <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb" position="6 1 -6"></a-entity>
