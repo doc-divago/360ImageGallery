@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>360&deg; Image Gallery T52</title>
+    <title>360&deg; Image Gallery T53</title>
     <meta name="description" content="360&deg; Image Gallery - A-Frame">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
@@ -31,19 +31,16 @@
         <!-- == Sounds == -->
         <audio id="click-sound" crossorigin="anonymous" src="assets/click.ogg"></audio>
         <!-- == 360° images == -->
-        <!-- Piazza base -->
         <img id="square" crossorigin="anonymous" src="assets/square.jpg">
         <img id="square-thumb" crossorigin="anonymous" src="assets/square.jpg">
         <img id="croatia" crossorigin="anonymous" src="assets/croatia-hires.jpg">
         <img id="croatia-thumb" crossorigin="anonymous" src="assets/croatia-hires.jpg">
-        <!--
-        <img id="cubes-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
-        <img id="sechelt-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg">
-
-        <img id="cubes" crossorigin="anonymous" src="Street View 360 1.jpg">
-        <img id="sechelt" crossorigin="anonymous" src="Street View 3602 1.jpg">
-      -->
-
+        <img id="greece" crossorigin="anonymous" src="assets/greece-hires.jpg">
+        <img id="greece-thumb" crossorigin="anonymous" src="assets/greece-hires.jpg">
+        <img id="italy" crossorigin="anonymous" src="assets/italy-hires.jpg">
+        <img id="italy-thumb" crossorigin="anonymous" src="assets/italy-hires.jpg">
+        <img id="latvia" crossorigin="anonymous" src="assets/latvia-hires.jpg">
+        <img id="latvia-thumb" crossorigin="anonymous" src="assets/latvia-hires.jpg">
       </a-assets>
 
       <!-- 360-degree image. -->
@@ -64,7 +61,7 @@
 
         <!-- Grecia placeholder -->
         <a-circle color="#0C0" radius="0.8" position="-1.5 0.5 -4" rotation="0 15 0">
-          <a-entity template="src: #link" data-href="scenes/greece.html" data-src="#croatia" data-thumb="#croatia-thumb" position="0 0 0.1">
+          <a-entity template="src: #link" data-href="scenes/greece.html" data-src="#greece" data-thumb="#greece-thumb" position="0 0 0.1">
           </a-entity>
           <a-text value="Greece" geometry="primitive:plane"  position="0 1 -0.1" align="center" anchor="center"></a-text>
           <a-text value="Thanks for all the fish" geometry="primitive:plane;" position="0 -1 -0.1" align="center" anchor="center"></a-text>
@@ -73,7 +70,7 @@
 
         <!-- Italia placeholder -->
         <a-circle color="#0C0" radius="0.8" position="1.5 0.5 -4" rotation="0 -15 0">
-          <a-entity template="src: #link" data-href="scenes/croatia.html" data-src="#croatia" data-thumb="#croatia-thumb" position="0 0 0.1">
+          <a-entity template="src: #link" data-href="scenes/italy.html" data-src="#italy" data-thumb="#italy-thumb" position="0 0 0.1">
           </a-entity>
           <a-text value="Italy" geometry="primitive:plane"  position="0 1 -0.1" align="center" anchor="center"></a-text>
           <a-text value="Thanks for all the fish" geometry="primitive:plane; transparent: true;" position="0 -1 -0.1" align="center" anchor="center"></a-text>
@@ -81,12 +78,11 @@
 
         <!-- Lettonia placeholder -->
         <a-circle color="#0C0" radius="0.8" position="4.5 0.5 -4" rotation="0 -30 0">
-          <a-entity template="src: #link" data-href="scenes/croatia.html" data-src="#croatia" data-thumb="#croatia-thumb" position="0 0 0.1">
+          <a-entity template="src: #link" data-href="scenes/latvia.html" data-src="#latvia" data-thumb="#latvia-thumb" position="0 0 0.1">
           </a-entity>
           <a-text value="Latvia" geometry="primitive:plane"  position="0 1 -0.1" align="center" anchor="center"></a-text>
           <a-text value="Thanks for all the fish" geometry="primitive:plane; transparent: true;" position="0 -1 -0.1" align="center" anchor="center"></a-text>
         </a-circle>
-
 
       </a-entity>
 
