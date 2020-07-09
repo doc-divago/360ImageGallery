@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>360&deg; Image Gallery T36</title>
+    <title>360&deg; Image Gallery T37</title>
     <meta name="description" content="360&deg; Image Gallery - A-Frame">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
-    <!-- <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script> -->
+    <!-- <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>  Se non si usa Layout non è necessario-->
     <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
     <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
 
@@ -58,6 +58,10 @@
       <a-entity id="links"  position="0 -1 0">
         <!-- componente che è possibile utilizzare layout="type: box; columns: 3; margin: 1.5;" -->
         <!-- <a-link class="link" href="scenes/italy.html" title="Italy 7" image="Street View 3602 1.jpg" on="click" peekMode="true"></a-link> -->
+        <a-circle color="#CCC" radius="1" position="-2 0 -4">
+          <a-entity template="src: #link" data-href="scenes/croatia.html" data-src="#croatia" data-thumb="#croatia-thumb" position="0 0 0.1">
+          </a-entity>
+        </a-circle>
         <a-entity template="src: #link" data-href="scenes/croatia.html" data-src="#croatia" data-thumb="#croatia-thumb" position="0 0 -4">
         </a-entity>
 
