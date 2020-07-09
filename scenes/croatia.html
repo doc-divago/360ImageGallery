@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Croatia Scene T1</title>
+    <title>Croatia Scene T2</title>
     <meta name="description" content="360&deg; Image Gallery - A-Frame">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
@@ -14,7 +14,7 @@
       <a-entity class="link"
         geometry="primitive: circle; radius: 0.6;"
         material="shader: flat; src: ${thumb}"
-        link="title: ${title}; href: ${href}"
+        link="href: ${href}"
         event-set__mouseenter="scale: 1.2 1.2 1"
         event-set__mouseleave="scale: 1 1 1"
         sound="on: click; src: #click-sound"></a-entity>
@@ -28,8 +28,8 @@
         <!-- == Sounds == -->
         <audio id="click-sound" crossorigin="anonymous" src="../assets/click.ogg"></audio>
         <!-- == 360° images == -->
-        <img id="croatia" crossorigin="anonymous" src="../assets/croazia-hires.jpg">
-        <img id="croatia-thumb" crossorigin="anonymous" src="../assets/croazia-hires.jpg">
+        <img id="croatia" crossorigin="anonymous" src="../assets/croatia-hires.jpg">
+        <img id="croatia-thumb" crossorigin="anonymous" src="../assets/croatia-hires.jpg">
         <img id="square" crossorigin="anonymous" src="../assets/square.jpg">
         <img id="square-thumb" crossorigin="anonymous" src="../assets/square.jpg">
       </a-assets>
