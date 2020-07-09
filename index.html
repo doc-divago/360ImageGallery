@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>360&deg; Image Gallery T39</title>
+    <title>360&deg; Image Gallery T40</title>
     <meta name="description" content="360&deg; Image Gallery - A-Frame">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
@@ -55,14 +55,14 @@
       <!--
       <a-link class="link" href="example.html" position="4 0.5 -7" image="#croatia-thumb" geometry="primitive:circle;segments:64" material="shader:flat;pano:#croatia-thumb;" link="" title="Example - T33">
       </a-link> -->
-      <a-entity id="links"  position="0 -1 0">
+      <a-entity id="links"  position="0 0 0">
         <!-- componente che è possibile utilizzare layout="type: box; columns: 3; margin: 1.5;" -->
         <!-- <a-link class="link" href="scenes/italy.html" title="Italy 7" image="Street View 3602 1.jpg" on="click" peekMode="true"></a-link> -->
-        <a-circle color="#0C0" radius="0.8" position="-2 2 -4" rotation="0 30 0">
+        <a-circle color="#0C0" radius="0.8" position="-2 0.5 -4" rotation="0 30 0">
           <a-entity template="src: #link" data-href="scenes/croatia.html" data-src="#croatia" data-thumb="#croatia-thumb" position="0 0 0.1">
           </a-entity>
-          <a-text value="Croatia" position="0 1 0"></a-text>
-          <a-text value="Thanks for all the fish" position="0 -1 0"></a-text>
+          <a-text value="Croatia" position="-0.4 1 0"></a-text>
+          <a-text value="Thanks for all the fish" position="0 -1 0" align=""></a-text>
         </a-circle>
         <a-entity template="src: #link" data-href="scenes/croatia.html" data-src="#croatia" data-thumb="#croatia-thumb" position="0 0 -4">
         </a-entity>
