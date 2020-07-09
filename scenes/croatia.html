@@ -6,7 +6,6 @@
     <meta name="description" content="360&deg; Image Gallery - A-Frame">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
-    <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
     <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
     <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
 
@@ -27,33 +26,22 @@
     <a-scene>
       <a-assets>
         <!-- == Sounds == -->
-        <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+        <audio id="click-sound" crossorigin="anonymous" src="../assets/click.ogg"></audio>
         <!-- == 360° images == -->
-        <!-- Piazza base -->
-        <img id="square" crossorigin="anonymous" src="../assets/croazia-hires.jpg">
-        <img id="square-thumb" crossorigin="anonymous" src="assets/croazia-hires.jpg">
-        <img id="city-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-city.jpg">
-        <img id="cubes-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
-        <img id="sechelt-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg">
-
-        <img id="cubes" crossorigin="anonymous" src="Street View 360 1.jpg"> <!-- funziona con immagine scaricata. -->
-        <img id="sechelt" crossorigin="anonymous" src="Street View 3602 1.jpg"> <!-- funziona con immagine scaricata. -->
-
+        <img id="croatia" crossorigin="anonymous" src="../assets/croazia-hires.jpg">
+        <img id="croatia-thumb" crossorigin="anonymous" src="../assets/croazia-hires.jpg">
+        <img id="square" crossorigin="anonymous" src="assets/square.jpg">
+        <img id="square-thumb" crossorigin="anonymous" src="assets/square.jpg">
       </a-assets>
 
       <!-- 360-degree image. -->
-      <a-sky id="image-360" radius="10" src="#square"
+      <a-sky id="image-360" radius="10" src="#croatia"
              animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade"
              animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"></a-sky>
 
       <!-- Image links. -->
-      <a-entity id="links"  position="0 -1 0">
-        <!-- componente che è possibile utilizzare layout="type: box; columns: 3; margin: 1.5;" -->
-        <!-- <a-link class="link" href="scenes/italy.html" title="Italy 7" image="Street View 3602 1.jpg" on="click" peekMode="true"></a-link> -->
-        <a-entity template="src: #link" data-href="../index.html" data-title="Italy" data-src="#square" data-thumb="#square-thumb" position="0 0 -4"></a-entity>
-        <a-entity template="src: #link" data-href="../index.html" data-title="Greece" data-src="#cubes" data-title="Greece" data-thumb="#cubes-thumb" position="2 1 -8"></a-entity>
-        <a-entity template="src: #link" data-src="#city" data-thumb="#city-thumb" position="4 1 -6"></a-entity>
-        <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb" position="6 1 -6"></a-entity>
+      <a-entity id="links"  position="0 0 0">
+
       </a-entity>
 
       <!-- Camera + cursor. -->
