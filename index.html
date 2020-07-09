@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>360&deg; Image Gallery T42</title>
+    <title>360&deg; Image Gallery T43</title>
     <meta name="description" content="360&deg; Image Gallery - A-Frame">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
@@ -61,7 +61,13 @@
         <a-circle color="#0C0" radius="0.8" position="-2 0.5 -4" rotation="0 30 0">
           <a-entity template="src: #link" data-href="scenes/croatia.html" data-src="#croatia" data-thumb="#croatia-thumb" position="0 0 0.1">
           </a-entity>
-          <a-text value="Croatia" position="-0.4 1 0"></a-text>
+          <a-entity
+            geometry="primitive: plane; height: auto; width: auto"
+            material="color: blue"
+            text="width: 4; value: Croatia"
+            anchor="center">
+          </a-entity>
+          <!-- <a-text value="Croatia" position="-0.4 1 0"></a-text> -->
           <a-text value="Thanks for all the fish" geometry="primitive:plane" position="0 -1 0" align="center" anchor="center"></a-text>
         </a-circle>
         <a-entity template="src: #link" data-href="scenes/croatia.html" data-src="#croatia" data-thumb="#croatia-thumb" position="0 0 -4">
