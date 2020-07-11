@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Croatia Scene T15</title>
+    <title>Croatia Scene T16</title>
     <meta name="description" content="360&deg; Image Gallery - A-Frame">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
@@ -36,6 +36,7 @@
         <img id="croatia-thumb" crossorigin="anonymous" src="../assets/croatia-hires.jpg">
         <img id="square" crossorigin="anonymous" src="../assets/square.jpg">
         <img id="square-thumb" crossorigin="anonymous" src="../assets/square.jpg">
+        <video id="video" crossorigin="anonymous" src="../assets/video.mp4">
       </a-assets>
 
       <!-- 360-degree image. -->
@@ -52,7 +53,14 @@
           <a-text value="Europa Square" geometry="primitive:plane;" position="0 -1 -0.1" align="center" anchor="center"></a-text>
         </a-circle>
 
-        <a-text value="Additional Content" geometry="primitive:plane; width:2.4; height:1.35;" material="color: blue"  position="-2 0.5 -2.5" rotation="0 75 0" align="center" anchor="center"></a-text>
+        <a-text value="Additional Content" geometry="primitive:plane; width:2.4; height:1.35;" material="color: blue"  position="-2 0.5 -2.5" rotation="0 75 0" align="center" anchor="center">
+          <a-video
+      			id = "video-display"
+      			width="1.6" height="0.9"
+      			position="0 0 0.1"
+      			src="#video">
+      		</a-video>
+        </a-text>
         <a-text value="Basic info" geometry="primitive:plane; width:2.4; height:1.35;" material="color: blue" position="-2 0.5 2.5" rotation="0 105 0" align="center" anchor="center"></a-text>
       </a-entity>
 
