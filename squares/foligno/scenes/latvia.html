@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Latvia Scene T15</title>
+    <meta name="description" content="360&deg; Image Gallery - A-Frame">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
+    <script src="../vendor/extended-wasd-controls.js"></script>
+
+    <!-- Image link template to be reused. -->
+    <script id="link" type="text/html">
+      <a-entity class="link"
+        geometry="primitive: circle; radius: 0.6;"
+        material="shader: flat; src: ${thumb}"
+        link="href: ${href}"
+        event-set__mouseenter="scale: 1.2 1.2 1"
+        event-set__mouseleave="scale: 1 1 1"
+        sound="on: click; src: #click-sound"></a-entity>
+    </script>
+    <!-- event-set__click="_target: #image-360; _delay: 300; material.src: ${src}" -->
+    <!-- proxy-event="event: click; to: #image-360; as: fade" -->
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <!-- == Sounds == -->
+        <audio id="click-sound" crossorigin="anonymous" src="../assets/click.ogg"></audio>
+        <!-- == 360° images == -->
+        <img id="latvia" crossorigin="anonymous" src="../assets/latvia-hires.jpg">
+        <img id="latvia-thumb" crossorigin="anonymous" src="../assets/latvia-hires.jpg">
+        <img id="square" crossorigin="anonymous" src="../assets/square.jpg">
+        <img id="square-thumb" crossorigin="anonymous" src="../assets/square.jpg">
+      </a-assets>
+
+      <!-- 360-degree image. -->
+      <a-sky id="image-360" radius="10" src="#latvia"
+             animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade"
+             animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"></a-sky>
+
+      <!-- Image links. -->
+      <a-entity id="links"  position="0 0 0">
+        <a-circle color="#0C0" radius="0.8" position="1 0.5 6" rotation="0 180 0">
+          <a-entity template="src: #link" data-href="../foligno.html" data-src="#square" data-thumb="#square-thumb" position="0 0 0.1">
+          </a-entity>
+          <a-text value="Back to" geometry="primitive:plane"  position="0 1 -0.1" align="center" anchor="center"></a-text>
+          <a-text value="Europa Square" geometry="primitive:plane;" position="0 -1 -0.1" align="center" anchor="center"></a-text>
+        </a-circle>
+
+        <a-text value="Additional Content" geometry="primitive:plane; width:2.4; height:1.35;" material="color: blue"  position="-2 0.5 -2.5" rotation="0 75 0" align="center" anchor="center"></a-text>
+        <a-text value="Basic info" geometry="primitive:plane; width:2.4; height:1.35;" material="color: blue" position="-2 0.5 2.5" rotation="0 105 0" align="center" anchor="center"></a-text>
+      </a-entity>
+
+      <!-- Camera + cursor. -->
+      <a-entity camera extended-wasd-controls="flyEnabled: true; turnEnabled: true; lookEnabled: true; maxLookAngle: 60;">
+        <a-cursor
+          id="cursor"
+          animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
+          animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
+          event-set__mouseenter="_event: mouseenter; color: springgreen"
+          event-set__mouseleave="_event: mouseleave; color: black"
+          raycaster="objects: .link"></a-cursor>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>

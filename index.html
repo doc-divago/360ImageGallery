@@ -1,104 +1,500 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>360&deg; Image Gallery T54</title>
-    <meta name="description" content="360&deg; Image Gallery - A-Frame">
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
-    <!-- <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>  Se non si usa Layout non è necessario-->
-    <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
-    <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
-    <script src="vendor/extended-wasd-controls.js"></script>
+    <meta charset='utf-8' />
+    <title>Europa Square Locator - T01</title>
+    <meta name='robots' content='noindex, nofollow'>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet'>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body {
+        color:#404040;
+        font:400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+        margin:0;
+        padding:0;
+        -webkit-font-smoothing:antialiased;
+      }
 
+      * {
+        -webkit-box-sizing:border-box;
+        -moz-box-sizing:border-box;
+        box-sizing:border-box;
+      }
 
-    <!-- Image link template to be reused. -->
-    <script id="link" type="text/html">
-      <a-entity class="link"
-        geometry="primitive: circle; radius: 0.6;"
-        material="shader: flat; src: ${thumb}"
-        link="href: ${href}"
-        event-set__mouseenter="scale: 1.2 1.2 1;"
-        event-set__mouseleave="scale: 1 1 1"
-        sound="on: click; src: #click-sound"></a-entity>
-    </script>
-    <!-- event-set__click="_target: #image-360; _delay: 300; material.src: ${src}" -->
-    <!-- proxy-event="event: click; to: #image-360; as: fade" -->
-    <!-- sound="on: click; src: #click-sound" -->
-    <!-- event-set__click="sound.src: #click-sound" -->
+      .sidebar {
+        position:absolute;
+        width:33.3333%;
+        height:100%;
+        top:0;left:0;
+        overflow:hidden;
+        border-right:1px solid rgba(0,0,0,0.25);
+      }
+      .pad2 {
+        padding:20px;
+      }
+
+      .map {
+        position:absolute;
+        left:33.3333%;
+        width:66.6666%;
+        top:0;bottom:0;
+      }
+
+      h1 {
+        font-size:22px;
+        margin:0;
+        font-weight:400;
+        line-height: 20px;
+        padding: 20px 2px;
+      }
+
+      a {
+        color:#404040;
+        text-decoration:none;
+      }
+
+      a:hover {
+        color:#101010;
+      }
+
+      .heading {
+        background:#fff;
+        border-bottom:1px solid #eee;
+        min-height:60px;
+        line-height:60px;
+        padding:0 10px;
+        background-color: #003399;
+        color: #fff;
+      }
+
+      .listings {
+        height:100%;
+        overflow:auto;
+        padding-bottom:60px;
+      }
+
+      .listings .item {
+        display:block;
+        border-bottom:1px solid #eee;
+        padding:10px;
+        text-decoration:none;
+      }
+
+      .listings .item:last-child { border-bottom:none; }
+      .listings .item .title {
+        display:block;
+        color:#00853e;
+        font-weight:700;
+      }
+
+      .listings .item .title small { font-weight:400; }
+      .listings .item.active .title,
+      .listings .item .title:hover { color:#8cc63f; }
+      .listings .item.active {
+        background-color:#f8f8f8;
+      }
+      ::-webkit-scrollbar {
+        width:3px;
+        height:3px;
+        border-left:0;
+        background:rgba(0,0,0,0.1);
+      }
+      ::-webkit-scrollbar-track {
+        background:none;
+      }
+      ::-webkit-scrollbar-thumb {
+        background:#00853e;
+        border-radius:0;
+      }
+
+      .marker {
+        border: none;
+        cursor: pointer;
+        height: 56px;
+        width: 56px;
+        background-image: url(marker.png);
+        background-color: rgba(0, 0, 0, 0);
+      }
+
+      .clearfix { display:block; }
+      .clearfix:after {
+        content:'.';
+        display:block;
+        height:0;
+        clear:both;
+        visibility:hidden;
+      }
+
+      /* Marker tweaks */
+      .mapboxgl-popup {
+        padding-bottom: 50px;
+      }
+
+      .mapboxgl-popup-close-button {
+        display:none;
+      }
+      .mapboxgl-popup-content {
+        font:400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+        padding:0;
+        width:180px;
+      }
+      .mapboxgl-popup-content-wrapper {
+        padding:1%;
+      }
+      .mapboxgl-popup-content h3 {
+        background:#003399;
+        color:#fff;
+        margin:0;
+        display:block;
+        padding:10px;
+        border-radius:3px 3px 0 0;
+        font-weight:700;
+        margin-top:-15px;
+      }
+
+      .mapboxgl-popup-content h4 {
+        margin:0;
+        display:block;
+        padding: 10px 10px 10px 10px;
+        font-weight:400;
+      }
+
+      .mapboxgl-popup-content div {
+        padding:10px;
+      }
+
+      .mapboxgl-container .leaflet-marker-icon {
+        cursor:pointer;
+      }
+
+      .mapboxgl-popup-content a:link, a:visited {
+        background-color: white;
+        color: #003399;
+        padding: 3 px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .mapboxgl-popup-content a:hover, a:active {
+        background-color: #003399;
+        color: white;
+      }
+
+      .mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
+        margin-top: 15px;
+      }
+
+      .mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
+        border-bottom-color: #91c949;
+      }
+
+      .mapboxgl-popup-content div.center {
+        margin: auto;
+        width: 25%;
+        border: 2px solid #003399;
+        text-align: center;
+        padding: 0px;
+      }
+    </style>
   </head>
   <body>
-    <a-scene>
-      <a-assets>
-        <!-- == Sounds == -->
-        <audio id="click-sound" crossorigin="anonymous" src="assets/click.ogg"></audio>
-        <!-- == 360° images == -->
-        <img id="square" crossorigin="anonymous" src="assets/square.jpg">
-        <img id="square-thumb" crossorigin="anonymous" src="assets/square.jpg">
-        <img id="croatia" crossorigin="anonymous" src="assets/croatia-hires.jpg">
-        <img id="croatia-thumb" crossorigin="anonymous" src="assets/croatia-hires.jpg">
-        <img id="greece" crossorigin="anonymous" src="assets/greece-hires.jpg">
-        <img id="greece-thumb" crossorigin="anonymous" src="assets/greece-hires.jpg">
-        <img id="italy" crossorigin="anonymous" src="assets/italy-hires.jpg">
-        <img id="italy-thumb" crossorigin="anonymous" src="assets/italy-hires.jpg">
-        <img id="latvia" crossorigin="anonymous" src="assets/latvia-hires.jpg">
-        <img id="latvia-thumb" crossorigin="anonymous" src="assets/latvia-hires.jpg">
-      </a-assets>
+    <div class='sidebar'>
+      <div class='heading'>
+        <h1>Europa Square locations</h1>
+      </div>
+      <div id='listings' class='listings'></div>
+    </div>
+    <div id='map' class='map'></div>
+    <script>
+      // This will let you use the .remove() function later on
+      if (!('remove' in Element.prototype)) {
+        Element.prototype.remove = function() {
+          if (this.parentNode) {
+              this.parentNode.removeChild(this);
+          }
+        };
+      }
 
-      <!-- 360-degree image. -->
-      <a-sky id="image-360" radius="10" src="#square"
-             animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade"
-             animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"></a-sky>
+      mapboxgl.accessToken = 'pk.eyJ1IjoiZG9jLWRpdmFnbyIsImEiOiJja2NnbXU0ancwdGx1MnhtMm1pdzV5cWd4In0.NXt0RiFp4HjZ_iy55WADkg';
+      /**
+       * Add the map to the page
+      */
+      var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/light-v10',
+        center: [12.7035792, 46.000],
+        zoom: 4,
+        scrollZoom: false
+      });
 
-      <!-- Image links. -->
+      var stores = {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                12.7035792,
+                42.9559903
+              ]
+            },
+            "properties": {
+              "phoneFormatted": "",
+              "phone": "",
+              "address": "Piazza della Repubblica",
+              "city": "Foligno",
+              "country": "Italy",
+              "crossStreet": "",
+              "postalCode": "06034",
+              "state": "Umbria",
+              "squareUrl": "http://foligno.html"
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                14.44269,
+                45.3296049
+              ]
+            },
+            "properties": {
+              "phoneFormatted": "",
+              "phone": "",
+              "address": "Museum of the City of Rijeka",
+              "city": "Rijeka",
+              "country": "Croatia",
+              "crossStreet": "",
+              "postalCode": "",
+              "state": "",
+              "squareUrl": "http://foligno.html"
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                23.7357427,
+                37.9755029
+              ]
+            },
+            "properties": {
+              "phoneFormatted": "",
+              "phone": "",
+              "address": "Syntagma Square",
+              "city": "Athens",
+              "country": "Greece",
+              "crossStreet": "",
+              "postalCode": "",
+              "state": "",
+              "squareUrl": "http://foligno.html"
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                24.1149252,
+                56.9494242
+              ]
+            },
+            "properties": {
+              "phoneFormatted": "",
+              "phone": "",
+              "address": "Latvia National Opera Gardens",
+              "city": "Riga",
+              "country": "Latvia",
+              "crossStreet": "",
+              "postalCode": "",
+              "state": "",
+              "squareUrl": "http://foligno.html"
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                4.3761109,
+                50.8384821
+              ]
+            },
+            "properties": {
+              "phoneFormatted": "",
+              "phone": "",
+              "address": "European Parliament",
+              "city": "Brussels",
+              "country": "Belgium",
+              "crossStreet": "",
+              "postalCode": "",
+              "state": "",
+              "squareUrl": "http://foligno.html"
+            }
+          },
+        ]
+      };
 
-      <a-entity id="links"  position="0 0 0">
-        <!-- Croatia placeholder -->
-        <a-circle color="#0C0" radius="0.8" position="-4.5 0.5 -4" rotation="0 30 0">
-          <a-entity template="src: #link" data-href="scenes/croatia.html" data-src="#croatia" data-thumb="#croatia-thumb" position="0 0 0.1">
-          </a-entity>
-          <a-text value="Croatia" geometry="primitive:plane"  position="0 1 -0.1" align="center" anchor="center"></a-text>
-          <a-text value="Thanks for all the fish" geometry="primitive:plane;" position="0 -1 -0.1" align="center" anchor="center"></a-text>
-        </a-circle>
+      /**
+       * Assign a unique id to each store. You'll use this `id`
+       * later to associate each point on the map with a listing
+       * in the sidebar.
+      */
+      stores.features.forEach(function(store, i){
+        store.properties.id = i;
+      });
 
-        <!-- Grecia placeholder -->
-        <a-circle color="#0C0" radius="0.8" position="-1.5 0.5 -4" rotation="0 15 0">
-          <a-entity template="src: #link" data-href="scenes/greece.html" data-src="#greece" data-thumb="#greece-thumb" position="0 0 0.1">
-          </a-entity>
-          <a-text value="Greece" geometry="primitive:plane"  position="0 1 -0.1" align="center" anchor="center"></a-text>
-          <a-text value="Thanks for all the fish" geometry="primitive:plane;" position="0 -1 -0.1" align="center" anchor="center"></a-text>
-        </a-circle>
+      /**
+       * Wait until the map loads to make changes to the map.
+      */
+      map.on('load', function (e) {
+        /**
+         * This is where your '.addLayer()' used to be, instead
+         * add only the source without styling a layer
+        */
+        map.addSource("places", {
+          "type": "geojson",
+          "data": stores
+        });
+
+        /**
+         * Add all the things to the page:
+         * - The location listings on the side of the page
+         * - The markers onto the map
+        */
+        buildLocationList(stores);
+        addMarkers();
+      });
+
+      /**
+       * Add a marker to the map for every store listing.
+      **/
+      function addMarkers() {
+        /* For each feature in the GeoJSON object above: */
+        stores.features.forEach(function(marker) {
+          /* Create a div element for the marker. */
+          var el = document.createElement('div');
+          /* Assign a unique `id` to the marker. */
+          el.id = "marker-" + marker.properties.id;
+          /* Assign the `marker` class to each marker for styling. */
+          el.className = 'marker';
+
+          /**
+           * Create a marker using the div element
+           * defined above and add it to the map.
+          **/
+          new mapboxgl.Marker(el, { offset: [0, -23] })
+            .setLngLat(marker.geometry.coordinates)
+            .addTo(map);
+
+          /**
+           * Listen to the element and when it is clicked, do three things:
+           * 1. Fly to the point
+           * 2. Close all other popups and display popup for clicked store
+           * 3. Highlight listing in sidebar (and remove highlight for all other listings)
+          **/
+          el.addEventListener('click', function(e){
+            /* Fly to the point */
+            flyToStore(marker);
+            /* Close all other popups and display popup for clicked store */
+            createPopUp(marker);
+            /* Highlight listing in sidebar */
+            var activeItem = document.getElementsByClassName('active');
+            e.stopPropagation();
+            if (activeItem[0]) {
+              activeItem[0].classList.remove('active');
+            }
+            var listing = document.getElementById('listing-' + marker.properties.id);
+            listing.classList.add('active');
+          });
+        });
+      }
+
+      /**
+       * Add a listing for each store to the sidebar.
+      **/
+      function buildLocationList(data) {
+        data.features.forEach(function(store, i){
+          /**
+           * Create a shortcut for `store.properties`,
+           * which will be used several times below.
+          **/
+          var prop = store.properties;
+
+          /* Add a new listing section to the sidebar. */
+          var listings = document.getElementById('listings');
+          var listing = listings.appendChild(document.createElement('div'));
+          /* Assign a unique `id` to the listing. */
+          listing.id = "listing-" + prop.id;
+          /* Assign the `item` class to each listing for styling. */
+          listing.className = 'item';
+
+          /* Add the link to the individual listing created above. */
+          var link = listing.appendChild(document.createElement('a'));
+          link.href = '#';
+          link.className = 'title';
+          link.id = "link-" + prop.id;
+          link.innerHTML = prop.address;
+
+          /* Add details to the individual listing. */
+          var details = listing.appendChild(document.createElement('div'));
+          details.innerHTML = prop.city + ' - ' + prop.country;
 
 
-        <!-- Italia placeholder -->
-        <a-circle color="#0C0" radius="0.8" position="1.5 0.5 -4" rotation="0 -15 0">
-          <a-entity template="src: #link" data-href="scenes/italy.html" data-src="#italy" data-thumb="#italy-thumb" position="0 0 0.1">
-          </a-entity>
-          <a-text value="Italy" geometry="primitive:plane"  position="0 1 -0.1" align="center" anchor="center"></a-text>
-          <a-text value="Thanks for all the fish" geometry="primitive:plane; transparent: true;" position="0 -1 -0.1" align="center" anchor="center"></a-text>
-        </a-circle>
+          /**
+           * Listen to the element and when it is clicked, do four things:
+           * 1. Update the `currentFeature` to the store associated with the clicked link
+           * 2. Fly to the point
+           * 3. Close all other popups and display popup for clicked store
+           * 4. Highlight listing in sidebar (and remove highlight for all other listings)
+          **/
+          link.addEventListener('click', function(e){
+            for (var i=0; i < data.features.length; i++) {
+              if (this.id === "link-" + data.features[i].properties.id) {
+                var clickedListing = data.features[i];
+                flyToStore(clickedListing);
+                createPopUp(clickedListing);
+              }
+            }
+            var activeItem = document.getElementsByClassName('active');
+            if (activeItem[0]) {
+              activeItem[0].classList.remove('active');
+            }
+            this.parentNode.classList.add('active');
+          });
+        });
+      }
 
-        <!-- Lettonia placeholder -->
-        <a-circle color="#0C0" radius="0.8" position="4.5 0.5 -4" rotation="0 -30 0">
-          <a-entity template="src: #link" data-href="scenes/latvia.html" data-src="#latvia" data-thumb="#latvia-thumb" position="0 0 0.1">
-          </a-entity>
-          <a-text value="Latvia" geometry="primitive:plane"  position="0 1 -0.1" align="center" anchor="center"></a-text>
-          <a-text value="Thanks for all the fish" geometry="primitive:plane; transparent: true;" position="0 -1 -0.1" align="center" anchor="center"></a-text>
-        </a-circle>
+      /**
+       * Use Mapbox GL JS's `flyTo` to move the camera smoothly
+       * a given center point.
+      **/
+      function flyToStore(currentFeature) {
+        map.flyTo({
+          center: currentFeature.geometry.coordinates,
+          zoom: 15
+        });
+      }
 
-      </a-entity>
-
-      <!-- Camera + cursor. -->
-
-      <a-entity camera extended-wasd-controls="flyEnabled: true; turnEnabled: true; lookEnabled: true; maxLookAngle: 60;">
-        <a-cursor
-          id="cursor"
-          animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
-          animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
-          event-set__mouseenter="_event: mouseenter; color: springgreen"
-          event-set__mouseleave="_event: mouseleave; color: black"
-          raycaster="objects: .link"></a-cursor>
-      </a-entity>
-    </a-scene>
+      /**
+       * Create a Mapbox GL JS `Popup`.
+      **/
+      function createPopUp(currentFeature) {
+        var popUps = document.getElementsByClassName('mapboxgl-popup');
+        if (popUps[0]) popUps[0].remove();
+        var popup = new mapboxgl.Popup({closeOnClick: false})
+          .setLngLat(currentFeature.geometry.coordinates)
+          .setHTML('<h3>Europa Square</h3>' +
+            '<h4>' + currentFeature.properties.address + '</h4>' +
+            '<div class="center"><a href=scenes/foligno/"' + currentFeature.properties.squareUrl + '">Visit</a></div>')
+          .addTo(map);
+      }
+    </script>
   </body>
 </html>
