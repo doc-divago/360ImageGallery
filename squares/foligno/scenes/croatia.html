@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Croatia Scene T166</title>
+    <title>Croatia Scene T167</title>
     <meta name="description" content="360&deg; Image Gallery - A-Frame">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
@@ -40,7 +40,7 @@
       </a-assets>
 
       <!-- 360-degree image. -->
-      <a-sky id="image-360" radius="15" rotation="0 -90 0" src="#croatia"
+      <a-sky id="image-360" radius="50" rotation="0 -90 0" src="#croatia"
              animation__fade="property: components.material.material.color; type: color; from: #FFF; to: #000; dur: 300; startEvents: fade"
              animation__fadeback="property: components.material.material.color; type: color; from: #000; to: #FFF; dur: 300; startEvents: animationcomplete__fade"></a-sky>
 
@@ -54,10 +54,10 @@
         </a-circle>
 
         <a-text value="Additional Content" geometry="primitive:plane; width:2.56; height:1.44;" material="color: white"  position="-2 0.5 -2.5" rotation="0 75 0" align="center" anchor="center">
-          <a-box color="tomato" depth="0.12" height="0.09" width="2.56" position="0 0.675 0.1"></a-box>
-          <a-box color="tomato" depth="0.12" height="0.09" width="2.56" position="0 -0.675 0.1"></a-box>
-          <a-box color="tomato" depth="0.12" height="1.26" width="0.16" position="1.20 0 0.1"></a-box>
-          <a-box color="tomato" depth="0.12" height="1.26" width="0.16" position="-1.20 0 0.1"></a-box>
+          <a-box color="silver" depth="0.12" height="0.09" width="2.56" position="0 0.675 0.05"></a-box>
+          <a-box color="silver" depth="0.12" height="0.09" width="2.56" position="0 -0.675 0.05"></a-box>
+          <a-box color="silver" depth="0.12" height="1.26" width="0.16" position="1.20 0 0.05"></a-box>
+          <a-box color="silver" depth="0.12" height="1.26" width="0.16" position="-1.20 0 0.05"></a-box>
           <a-video
       			id = "video-display"
       			width="2.4" height="1.35"
