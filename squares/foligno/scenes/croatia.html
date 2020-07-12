@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Croatia Scene T1613</title>
+    <title>Croatia Scene T17</title>
     <meta name="description" content="360&deg; Image Gallery - A-Frame">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
@@ -12,6 +12,7 @@
     <!-- This is a big mistake for many reasons and can be only a very temporary solution. -->
     <!-- ################################################### -->
     <script src="https://doc-divago.github.io/360ImageGallery/vendor/extended-wasd-controls.js"></script>
+    <script src="https://doc-divago.github.io/360ImageGallery/vendor/aframe-spritesheet-animation.js"></script>
 
     <!-- Image link template to be reused. -->
     <script id="link" type="text/html">
@@ -36,6 +37,7 @@
         <img id="croatia-thumb" crossorigin="anonymous" src="../assets/croatia-hires.jpg">
         <img id="square" crossorigin="anonymous" src="../assets/square.jpg">
         <img id="square-thumb" crossorigin="anonymous" src="../assets/square.jpg">
+        <img id="spritesheet" crossorigin="anonymous" src="../assets/spritesheet-aquila.png">
         <video id="video" crossorigin="anonymous" loop="true" src="../assets/laquila-rottweil.mp4" autoplay></video>
       </a-assets>
 
@@ -66,6 +68,7 @@
       		</a-video>
         </a-text>
         <a-text value="Basic info" geometry="primitive:plane; width:2.4; height:1.35;" material="color: blue" position="-2.5 0.5 -2.5" rotation="0 15 0" align="center" anchor="center">
+          <a-image width="2.4" height="1.35" position="0 0 0.01" src="#spritesheet" material="blending: normal; transparent: true; alphaTest: 0.01;" spritesheet-animation="rows: 1; columns: 3; frameDuration: 1.00; loop: true;"></a-image>
           <a-box color="silver" depth="0.12" height="0.09" width="2.56" position="0 0.675 0.05"></a-box>
           <a-box color="silver" depth="0.12" height="0.09" width="2.56" position="0 -0.675 0.05"></a-box>
           <a-box color="silver" depth="0.12" height="1.26" width="0.16" position="1.20 0 0.05"></a-box>
