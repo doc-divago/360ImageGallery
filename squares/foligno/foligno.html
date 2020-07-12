@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>360&deg; Image Gallery T541</title>
+    <title>360&deg; Image Gallery T55</title>
     <meta name="description" content="360&deg; Image Gallery - A-Frame">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
@@ -46,6 +46,8 @@
         <img id="italy-thumb" crossorigin="anonymous" src="assets/italy-hires.jpg">
         <img id="latvia" crossorigin="anonymous" src="assets/latvia-hires.jpg">
         <img id="latvia-thumb" crossorigin="anonymous" src="assets/latvia-hires.jpg">
+        <img id="germany" crossorigin="anonymous" src="assets/germany-hires.jpg">
+        <img id="germany-thumb" crossorigin="anonymous" src="assets/germany-hires.jpg">
       </a-assets>
 
       <!-- 360-degree image. -->
@@ -56,7 +58,7 @@
       <!-- Image links. -->
 
       <a-entity id="links"  position="0 0 0">
-        <!-- Croatia placeholder -->
+        <!-- Croatia portal -->
         <a-circle color="#0C0" radius="0.8" position="-4.5 0.5 -4" rotation="0 30 0">
           <a-entity template="src: #link" data-href="scenes/croatia.html" data-src="#croatia" data-thumb="#croatia-thumb" position="0 0 0.1">
           </a-entity>
@@ -64,7 +66,7 @@
           <a-text value="Thanks for all the fish" geometry="primitive:plane;" position="0 -1 -0.1" align="center" anchor="center"></a-text>
         </a-circle>
 
-        <!-- Grecia placeholder -->
+        <!-- Greece portal -->
         <a-circle color="#0C0" radius="0.8" position="-1.5 0.5 -4" rotation="0 15 0">
           <a-entity template="src: #link" data-href="scenes/greece.html" data-src="#greece" data-thumb="#greece-thumb" position="0 0 0.1">
           </a-entity>
@@ -72,17 +74,25 @@
           <a-text value="Thanks for all the fish" geometry="primitive:plane;" position="0 -1 -0.1" align="center" anchor="center"></a-text>
         </a-circle>
 
-
-        <!-- Italia placeholder -->
+        <!-- Germany portal -->
         <a-circle color="#0C0" radius="0.8" position="1.5 0.5 -4" rotation="0 -15 0">
+          <a-entity template="src: #link" data-href="scenes/germany.html" data-src="#germany" data-thumb="#germany-thumb" position="0 0 0.1">
+          </a-entity>
+          <a-text value="Germany" geometry="primitive:plane"  position="0 1 -0.1" align="center" anchor="center"></a-text>
+          <a-text value="Thanks for all the fish" geometry="primitive:plane;" position="0 -1 -0.1" align="center" anchor="center"></a-text>
+        </a-circle>
+
+
+        <!-- Italy portal -->
+        <a-circle color="#0C0" radius="0.8" position="4.5 0.5 -4" rotation="0 -30 0">
           <a-entity template="src: #link" data-href="scenes/italy.html" data-src="#italy" data-thumb="#italy-thumb" position="0 0 0.1">
           </a-entity>
           <a-text value="Italy" geometry="primitive:plane"  position="0 1 -0.1" align="center" anchor="center"></a-text>
           <a-text value="Thanks for all the fish" geometry="primitive:plane; transparent: true;" position="0 -1 -0.1" align="center" anchor="center"></a-text>
         </a-circle>
 
-        <!-- Lettonia placeholder -->
-        <a-circle color="#0C0" radius="0.8" position="4.5 0.5 -4" rotation="0 -30 0">
+        <!-- Latvia portal -->
+        <a-circle color="#0C0" radius="0.8" position="7.5 0.5 -4" rotation="0 -45 0">
           <a-entity template="src: #link" data-href="scenes/latvia.html" data-src="#latvia" data-thumb="#latvia-thumb" position="0 0 0.1">
           </a-entity>
           <a-text value="Latvia" geometry="primitive:plane"  position="0 1 -0.1" align="center" anchor="center"></a-text>
