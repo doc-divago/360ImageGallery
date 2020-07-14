@@ -203,7 +203,7 @@
   <body>
     <div class='sidebar'>
       <div class='heading'>
-        <h1>Europa Square locations</h1>
+        <h1 id="welcome">Europa Square locations</h1>
       </div>
       <div id='listings' class='listings'></div>
     </div>
@@ -495,6 +495,12 @@
             '<div class="center"><a href="squares/foligno/' + currentFeature.properties.squareUrl + '">Visit</a></div>')
           .addTo(map);
       }
+
+      /**
+       * This is not Mapbox-related. Picks username and customises welcome message.
+      **/
+      const username = location.search.slice(10).split("&");
+      document.getElementById("welcome").innerHTML = "Hi, " + username[0] + "! Please visit an Europa Square location.";
     </script>
   </body>
 </html>
