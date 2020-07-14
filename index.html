@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Europa Square T021</title>
+    <title>Europa Square T022</title>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet'>
     <style>
       body {
@@ -135,7 +135,7 @@
           document.signin.username.focus();
           return false;
         }
-        if ( (pin.lenght != 4) || !(/\d{4}/.test(pin) ) {
+        if ( (pin.lenght != 4) || (!(/\d{4}/.test(pin))) ) {
           alert("You must enter a 4-digit PIN, please.");
           document.signin.pin.focus();
           return false;
