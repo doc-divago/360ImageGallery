@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet'>
+    <title>Europa Square T011</title>
+    <style>
+      body {
+        color:#404040;
+        font:400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+        margin:0;
+        padding:0;
+        -webkit-font-smoothing:antialiased;
+      }
+
+      * {
+        -webkit-box-sizing:border-box;
+        -moz-box-sizing:border-box;
+        box-sizing:border-box;
+      }
+
+      #login {
+        margin:auto;
+        width:33%;
+      }
+      input[type="text"]{
+        width:100%;
+        margin-top:5px;
+        margin-bottom:10px;
+        padding:10px;
+        border:1px solid #003399
+      }
+      input[type="password"]{
+        width:120px;
+        margin-top:1px;
+        margin-bottom:15px;
+        padding:10px;
+        border:1px solid #003399
+      }
+      input[type="submit"]{
+        width:120px;
+        padding:10px;
+        background-color:#003399;
+        border:none;
+        color:#fff;
+        font-size:18px;
+        font-weight:700;
+        cursor:pointer;
+        font-family:'Source Sans Pro',sans-serif
+      }
+      input[type="submit"]:hover {
+        background-color:#003366;
+        color:#fff;
+      }
+      select {
+        width:120px;
+        margin-top:1px;
+        margin-bottom:15px;
+        padding:10px;
+        border:1px solid #003399
+      }
+      img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width:50%
+      }
+    </style>
+  </head>
+  <body>
+    <img src="assets/cddc-logo.jpg" alt="CDDC project logo">
+    <div id="login">
+      <form  action="es-locator.html" name="signin">
+        <label for="username">Username: </label><br>
+        <input type="text" id="username" name="username" value="" placeholder="Ex. Andrea99, John Smith, TheBest..." required><br>
+        <label for="country">Country:</label><br>
+        <!-- <input list="countries" name="country">
+          <datalist id="countries">
+            <option value="Belgium">
+            <option value="Croatia">
+            <option value="Greece">
+            <option value="Italy">
+            <option value="Latvia">
+            <option value="Other">
+          </datalist><br> -->
+        <select id="country" name="country">
+          <option value="Belgium">Belgium</option>
+          <option value="Croatia">Croatia</option>
+          <option value="Greece">Greece</option>
+          <option value="Italy">Italy</option>
+          <option value="Latvia">Latvia</option>
+          <option value="Other" selected>Other</option>
+        </select><br>
+        <label for="pin">4-digit PIN:</label><br>
+        <input type="password" id="pin" name="pin" value="" required><br>
+        <!--<label for="checkpin">Repeat PIN:</label><br>
+        <input type="password" id="checkpin" name="checkpin" value=""><br>-->
+        <input type="submit" value="Submit" onclick="validateForm()">
+      </form>
+    </div>
+    <script>
+      function validateForm() {
+        const username = document.signin.username.value;
+        const country = document.signin.country.value;
+        const pin = document.signin.country.value;
+        if ((username == "") || (username == "undefined")) {
+          alert("Please, you must choose an username.");
+          document.signin.username.focus();
+          return false;
+        }
+        localStorage.setItem("username", username);
+        localStorage.setItem("country", country);
+        localStorage.setItem("pin", pin);
+        return
+      }
+    </script>
+  </body>
+</html>
