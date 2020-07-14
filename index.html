@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Europa Square T028</title>
+    <title>Europa Square T029</title>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet'>
     <style>
       body {
@@ -92,7 +92,7 @@
       <h1 class="center">Enter Europa Square</h1>
     </div>
     <div id="login">
-      <form  action="es-locator.html" name="signin">
+      <form  name="signin">
         <label for="username">Username: </label><br>
         <input type="text" id="username" name="username" value="" placeholder="Ex. Andrea99, John Smith, TheBest..." required><br>
         <label for="country">Country:</label><br>
@@ -150,6 +150,7 @@
           document.signin.pin.focus();
           return false;
         } else {
+          console.log("inside last block");
           document.signin.action = "es-locator.html";
           document.signin.submit();
           localStorage.setItem("username", username);
