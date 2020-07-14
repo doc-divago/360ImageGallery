@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Europa Square T015</title>
+    <title>Europa Square T016</title>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet'>
     <style>
       body {
@@ -23,6 +23,17 @@
         margin:auto;
         width:33%;
       }
+
+      #disclaimer {
+        margin:auto;
+        width:33%;
+        color:#404040;
+        font:400 11px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+        margin:0;
+        padding:0;
+        -webkit-font-smoothing:antialiased;
+      }
+
       input[type="text"]{
         width:100%;
         margin-top:5px;
@@ -69,6 +80,7 @@
   </head>
   <body>
     <img src="assets/cddc-logo.jpg" alt="CDDC project logo">
+    <h1>Enter Europa Square</h1>
     <div id="login">
       <form  action="es-locator.html" name="signin">
         <label for="username">Username: </label><br>
@@ -98,7 +110,11 @@
         <input type="submit" value="Submit" onclick="validateForm()">
       </form>
     </div>
-    <img src="assets/LogosBeneficairesErasmusRIGHT_EN.jpg" alt="Logo Erasmus+" style="width:200px;height:55px">
+    <img src="assets/LogosBeneficairesErasmusRIGHT_EN.jpg" alt="Logo Erasmus+" style="width:200px;height:55px;margin-top:50px;">
+    <div id="disclaimer">
+      Project n. 604517-EPP-1-2018-BE-EPPKA3-IPI-SOC-IN 2018-3186<br>
+      This project has been funded with support from the European Commission. This website reflects the views only of the author, and the Commission cannot be held responsible for any use which may be made of the information contained therein.
+    </div>
     <script>
       function validateForm() {
         const username = document.signin.username.value;
