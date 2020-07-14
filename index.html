@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Europa Square T019</title>
+    <title>Europa Square T020</title>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet'>
     <style>
       body {
@@ -129,7 +129,7 @@
       function validateForm() {
         const username = document.signin.username.value;
         const country = document.signin.country.value;
-        const pin = document.signin.country.value;
+        const pin = String(document.signin.country.value);
         if ((username == "") || (username == "undefined")) {
           alert("Please, you must choose an username.");
           document.signin.username.focus();
