@@ -135,24 +135,18 @@
           document.signin.username.focus();
           return false;
         }
-        console.log("PIN= " + pin);
-        console.log("pin.length= " + pin.length);
-        console.log("length test= " + (pin.length != 4));
+
         if (pin.length != 4) {
-          console.log("Inside length check: " + pin.length);
           alert("You must enter a 4-digit PIN, please.");
           document.signin.pin.focus();
           document.signin.reset();
-          console.log("regexp test= " + /\d{4}/.test(pin));
           return false;
         } else if (!(/\d{4}/.test(pin))){
-          console.log("inside regexp test");
           alert("You must enter only numbers, please.");
           document.signin.pin.focus();
           document.signin.reset();
           return false;
         } else {
-          console.log("inside last block");
           document.signin.action = "es-locator.html";
           document.signin.submit();
           localStorage.setItem("username", username);
